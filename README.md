@@ -1,5 +1,7 @@
 # 👾 Aplicativo de Criação de Personagens para RPG 👑
 
+![App Screenshot](screenshot.png)
+
 Bem-vindos, bravos aventureiros, ao **Aplicativo de Criação de Personagens para RPG**! 🎮🎉 Solte sua criatividade e embarque em uma jornada de customização de personagens usando o poder do Streamlit e a magia do SQLite.
 
 ## ✨ Recursos
