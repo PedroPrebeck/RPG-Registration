@@ -1,4 +1,5 @@
 import sqlite3
+import hashlib
 
 def connect_db():
     conn = sqlite3.connect('data.db')
@@ -7,12 +8,19 @@ def connect_db():
 
 def create_user(username, password):
     conn, cursor = connect_db()
-    cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
-    conn.commit()
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    cursor.execute('SELECT * FROM users WHERE username = ?', (username,))
+    if cursor.fetchone() is None:
+        cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, hashed_password))
+        conn.commit()
+        return True
+    else:
+        return False
 
 def login_user(username, password):
     conn, cursor = connect_db()
-    cursor.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password))
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    cursor.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, hashed_password))
     data = cursor.fetchone()
     return data
 
