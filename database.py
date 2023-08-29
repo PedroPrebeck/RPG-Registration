@@ -26,8 +26,13 @@ def login_user(username, password):
 
 def create_character(username, strength, intelligence, skin_color, hair):
     conn, cursor = connect_db()
-    cursor.execute('INSERT INTO characters (username, strength, intelligence, skin_color, hair) VALUES (?, ?, ?, ?, ?)', (username, strength, intelligence, skin_color, hair))
-    conn.commit()
+    cursor.execute('SELECT * FROM characters WHERE username = ?', (username,))
+    if cursor.fetchone() is None:
+        cursor.execute('INSERT INTO characters (username, strength, intelligence, skin_color, hair) VALUES (?, ?, ?, ?, ?)', (username, strength, intelligence, skin_color, hair))
+        conn.commit()
+        return True
+    else:
+        return False
 
 def get_characters(username):
     conn, cursor = connect_db()
