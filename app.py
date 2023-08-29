@@ -9,27 +9,14 @@ def main():
         st.subheader("Home")
         username = st.sidebar.text_input("User Name")
         password = st.sidebar.text_input("Password", type='password')
-        if st.sidebar.button("Login"):
+        if st.sidebar.checkbox("Login"):
             user = login_user(username, password)
             if user is not None:
                 st.success("Logged In Successfully")
-                st.sidebar.empty()
-                if st.sidebar.button("Logout"):
-                    username = ""
-                    password = ""
-                    st.sidebar.empty()
-                if st.sidebar.button("Create Character"):
-                    choice = "Create Character"
-                if st.sidebar.button("View Character"):
-                    choice = "View Character"
             else:
                 st.warning("Incorrect Username/Password")
-        if st.sidebar.button("Register"):
-            user = create_user(username, password)
-            if user:
-                st.success("User Created Successfully")
-            else:
-                st.warning("User Already Exists")
+        else:
+            st.info("If you're not registered, please go to the SignUp page.")
     elif choice == "Login":
         st.subheader("Login Section")
         username = st.sidebar.text_input("User Name")
