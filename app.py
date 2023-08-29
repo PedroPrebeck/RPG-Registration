@@ -15,7 +15,7 @@ def main():
             user = login_user(username, password)
             if user is not None:
                 st.success("Logged In Successfully")
-                user_menu = ["Home", "Create Character"]
+                user_menu = ["Home", "Create Character", "View Character"]
                 user_choice = st.sidebar.selectbox("Menu", user_menu)
                 if user_choice == "Create Character":
                     st.subheader("Create Your Character")
@@ -28,6 +28,16 @@ def main():
                             st.success("Character Created Successfully")
                         else:
                             st.warning("You have already created a character")
+                elif user_choice == "View Character":
+                    st.subheader("Your Character")
+                    character = get_characters(username)
+                    if character is not None:
+                        st.write(f"Strength: {character[0][1]}")
+                        st.write(f"Intelligence: {character[0][2]}")
+                        st.write(f"Skin Color: {character[0][3]}")
+                        st.write(f"Hair: {character[0][4]}")
+                    else:
+                        st.warning("You have not created a character yet")
             else:
                 st.warning("Incorrect Username/Password")
     elif choice == "SignUp":
