@@ -1,5 +1,5 @@
 import streamlit as st
-from database import create_user, login_user, create_character
+from database import create_user, login_user, create_character, get_characters
 
 def main():
     menu = ["Home", "Login", "SignUp"]
@@ -24,8 +24,10 @@ def main():
                     new_skin_color = st.selectbox("Skin Color", ["White", "Black", "Brown", "Yellow"])
                     new_hair = st.selectbox("Hair", ["Blonde", "Black", "Brown", "Red"])
                     if st.button("Create"):
-                        create_character(username, new_strength, new_intelligence, new_skin_color, new_hair)
-                        st.success("Character Created Successfully")
+                        if create_character(username, new_strength, new_intelligence, new_skin_color, new_hair):
+                            st.success("Character Created Successfully")
+                        else:
+                            st.warning("You have already created a character")
             else:
                 st.warning("Incorrect Username/Password")
     elif choice == "SignUp":
