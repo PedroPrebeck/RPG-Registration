@@ -4,6 +4,21 @@ import hashlib
 def connect_db():
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            username TEXT PRIMARY KEY,
+            password TEXT NOT NULL
+        )
+    ''')
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS characters (
+            username TEXT PRIMARY KEY,
+            strength INTEGER NOT NULL,
+            intelligence INTEGER NOT NULL,
+            skin_color TEXT NOT NULL,
+            hair TEXT NOT NULL
+        )
+    ''')
     return conn, cursor
 
 def create_user(username, password):
