@@ -1,5 +1,5 @@
 import streamlit as st
-from database import create_user, login_user, create_character, get_characters
+from database import create_user, login_user, create_character
 
 def main():
     menu = ["Home", "Login", "SignUp"]
