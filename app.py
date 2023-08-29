@@ -1,57 +1,45 @@
 import streamlit as st
 from database import create_user, login_user, create_character, get_characters
-import SessionState
 
 def main():
-    session_state = SessionState.get(user_name="", password="", login_status=False)
-    st.subheader("Home")
-    if session_state.login_status:
-        user = session_state.user_name
-    else:
-        user = st.text_input("User Name")
-        session_state.user_name = user
-        password = st.text_input("Password", type='password')
-        session_state.password = password
-        login_button = st.button("Login")
-        register_button = st.button("Register")
 
-    if not session_state.login_status:
-        if login_button:
-            user = login_user(session_state.user_name, session_state.password)
-            if user is not None:
-                session_state.login_status = True
-                st.success("Logged In Successfully")
+    st.subheader("Entrar na conta")
+    username = st.sidebar.text_input("Nome de Usuário")
+    password = st.sidebar.text_input("Senha", type='password')
+    if st.sidebar.checkbox("Entrar?"):
+      user = login_user(username, password)
+      if user is not None:
+        st.success("Entrada com Sucesso!")
+        user_menu = ["Criar Personagem", "Ver Personagem"]
+        user_choice = st.sidebar.selectbox("Menu", user_menu)
+        if user_choice == "Criar Personagem":
+          st.subheader("Criar Personagem")
+          new_strength = st.slider("Força", 1, 10)
+          new_intelligence = st.slider("Inteligência", 1, 10)
+          new_skin_color = st.selectbox("Cor da Pele", ["Branca", "Preta", "Parda", "Amarela"])
+          new_hair = st.selectbox("Cor do Cabelo", ["Loiro", "Preto", "Marrom", "Vermelho"])
+          if st.button("Criar"):
+            if create_character(username, new_strength, new_intelligence, new_skin_color, new_hair):
+              st.success("Personagem criado com sucesso!")
             else:
-                st.warning("Incorrect Username/Password. If you're not registered, please register.")
-        elif register_button:
-            if create_user(session_state.user_name, session_state.password):
-                st.success("User Created Successfully. Please login.")
-            else:
-                st.warning("User Already Exists. Please login.")
-    else:
-        if st.button("Logout"):
-            session_state.login_status = False
-        if st.button("Create Character"):
-            st.subheader("Create Your Character")
-            new_strength = st.slider("Strength", 1, 10)
-            new_intelligence = st.slider("Intelligence", 1, 10)
-            new_skin_color = st.selectbox("Skin Color", ["White", "Black", "Brown", "Yellow"])
-            new_hair = st.selectbox("Hair", ["Blonde", "Black", "Brown", "Red"])
-            if st.button("Create"):
-                if create_character(session_state.user_name, new_strength, new_intelligence, new_skin_color, new_hair):
-                    st.success("Character Created Successfully")
-                else:
-                    st.warning("You have already created a character")
-        if st.button("View Character"):
-            st.subheader("Your Character")
-            character = get_characters(session_state.user_name)
-            if character is not None:
-                st.write(f"Strength: {character[0][1]}")
-                st.write(f"Intelligence: {character[0][2]}")
-                st.write(f"Skin Color: {character[0][3]}")
-                st.write(f"Hair: {character[0][4]}")
-            else:
-                st.warning("You have not created a character yet")
+              st.warning("Você já tem um personagem criado!")
+        elif user_choice == "Ver Personagem":
+          st.subheader("Seu Personagem")
+          character = get_characters(username)
+          if character:
+            st.write(f"Força: {character[0][1]}")
+            st.write(f"Inteligência: {character[0][2]}")
+            st.write(f"Cor da Pele: {character[0][3]}")
+            st.write(f"Cor do Cabelo: {character[0][4]}")
+          else:
+            st.warning("Você ainda não criou um personagem!")
+      else:
+        st.warning("Usurário ou senha incorretos. Tente registrar um novo usuário.")
+    if st.sidebar.button("Registrar"):
+      if create_user(username, password):
+        st.success("Usuário criado com sucesso!")
+      else:
+        st.warning("Usuário já existe!")
 
 if __name__ == '__main__':
     main()
