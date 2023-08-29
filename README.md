@@ -14,7 +14,7 @@ Bem-vindos, bravos aventureiros, ao **Aplicativo de Criação de Personagens par
 ## 🚀 Como Embarcar
 
 1. Clone este repositório encantado em seu reino.
-2. Evoque o ritual de instalação: `pip install -r requisitos.txt`.
+2. Evoque o ritual de instalação: `pip install -r requirements.txt`.
 3. Liberte a magia do Streamlit: `streamlit run app.py`.
 
 ## 📜 Crônicas de Código
@@ -27,7 +27,7 @@ Sua jornada é dividida em dois pergaminhos:
 ## 🌟 Primeiros passos
 
 1. Chame um terminal e navegue até o diretório escolhido.
-2. Pronuncie o encantamento para instalar os elementos necessários: `pip install -r requisitos.txt`.
+2. Pronuncie o encantamento para instalar os elementos necessários: `pip install -r requirements.txt`.
 3. Lance o encantamento Streamlit: `streamlit run app.py`.
 
 ## 📣 Nota do Feiticeiro
@@ -36,4 +36,4 @@ Este é um mero vislumbre do potencial ilimitado que existe no mundo da feitiça
 
 Aventure-se e que seus personagens sejam lendários para sempre! 🎭📜
 
-Para qualquer dúvida ou enigma fascinante, envie um corvo para [Seu nome](mailto:pedroazevedo252@gmail.com). 🦉✉️
+Para qualquer dúvida ou enigma fascinante, envie um corvo para [Pedro Azevedo](mailto:pedroazevedo252@gmail.com). 🦉✉️
