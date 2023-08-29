@@ -2,6 +2,8 @@
 
 ![App Screenshot](screenshot.png)
 
+**Demonstração**: Explore uma demonstração ao vivo do aplicativo [aqui](https://gerador-rpg.streamlit.app/) 🌟
+
 Bem-vindos, bravos aventureiros, ao **Aplicativo de Criação de Personagens para RPG**! 🎮🎉 Solte sua criatividade e embarque em uma jornada de customização de personagens usando o poder do Streamlit e a magia do SQLite.
 
 ## ✨ Recursos
@@ -25,12 +27,6 @@ Sua jornada é dividida em dois pergaminhos:
 
 - `app.py`: Este grimório contém o coração dos encantamentos Streamlit. Ele combina autenticação de usuário, criação de personagem e visualização de atributos.
 - `database.py`: Neste livro, você descobrirá os feitiços para criar usuários, forjar personagens e recuperar seus atributos misteriosos.
-
-## 🌟 Primeiros passos
-
-1. Chame um terminal e navegue até o diretório escolhido.
-2. Pronuncie o encantamento para instalar os elementos necessários: `pip install -r requirements.txt`.
-3. Lance o encantamento Streamlit: `streamlit run app.py`.
 
 ## 📣 Nota do Feiticeiro
 
