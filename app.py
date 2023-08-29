@@ -7,6 +7,16 @@ def main():
 
     if choice == "Home":
         st.subheader("Home")
+        username = st.sidebar.text_input("User Name")
+        password = st.sidebar.text_input("Password", type='password')
+        if st.sidebar.checkbox("Login"):
+            user = login_user(username, password)
+            if user is not None:
+                st.success("Logged In Successfully")
+            else:
+                st.warning("Incorrect Username/Password")
+        else:
+            st.info("If you're not registered, please go to the SignUp page.")
     elif choice == "Login":
         st.subheader("Login Section")
         username = st.sidebar.text_input("User Name")
